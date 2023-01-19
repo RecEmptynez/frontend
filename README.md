@@ -1,6 +1,6 @@
 # Kandidatarbete
 
-Backend repo for our bachelors thesis.
+Frontend repo for our bachelors thesis.
 
 ## Team members
 
