@@ -1,4 +1,5 @@
 import { List } from "../components/List";
+import SearchFrame from "../components/SearchFrame";
 
 export const MainPage = () => {
   return (
@@ -12,6 +13,7 @@ export const MainPage = () => {
             placeholder="Sök efter din ingrediens här!"
           />
         </div>
+        <SearchFrame/>
         <div className="h-2/3 flex flex-col items-center justify-center">
           <List />
         </div>

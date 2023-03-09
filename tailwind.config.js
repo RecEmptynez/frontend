@@ -13,6 +13,9 @@ module.exports = {
       "2xl": "1536px",
     },
     extend: {
+      fontFamily: {
+				'poppins': ['Poppins', 'Roboto'],
+			},
       colors: {
         beige: {
           200: "#FDFBF0",

@@ -1,3 +1,6 @@
+/* Import Poppins font family (regular 400, medium 500, semi bold 600, bold 700) */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
