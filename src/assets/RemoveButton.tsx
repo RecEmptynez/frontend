@@ -1,6 +1,6 @@
-export const X: React.FC<{onClick?: React.MouseEventHandler<HTMLElement>}> = ({onClick}) => {
+export const RemoveButton: React.FC<{onClick?: React.MouseEventHandler<HTMLElement>}> = ({onClick}) => {
     return (
-      <div className="w-[8px] h-[8px] mr-1 cursor-pointer" onClick={onClick}>
+      <div className="w-[10px] h-[10px] mr-1 cursor-pointer" onClick={onClick}>
         <svg className="fill-beige-1000 hover:fill-beige-1200"
           width="100%"
           height="100%"

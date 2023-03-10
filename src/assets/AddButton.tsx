@@ -1,6 +1,6 @@
-export default function AddIcon() {
+export const AddButton: React.FC<{onClick?: React.MouseEventHandler<HTMLElement>}> = ({onClick}) => {
     return (
-      <div className="w-4 h-4">
+      <div className=" w-[16px] h-[16px] cursor-pointer" onClick={onClick}>
         <svg
           width="100%"
           height="100%"

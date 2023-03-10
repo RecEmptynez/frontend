@@ -1,4 +1,4 @@
-import AddIcon from "./AddIcon";
+import {AddButton} from "../assets/AddButton";
 
 export interface IngredientProp {
     name: string;
@@ -9,9 +9,9 @@ export interface IngredientProp {
   
     return (
 
-      <div className={` py-2 inline-flex justify-between items-center text-left w-[100%]`}>
+      <div className={`mr-0.5 py-2 inline-flex justify-between items-center text-left w-[100%]`}>
         <p className="w-[90%]">{name}</p>
-        <AddIcon/>
+        <AddButton onClick={() => ("Function_that_adds_ingredient_to_ingredient_list")}/>
       </div>
     );
   };

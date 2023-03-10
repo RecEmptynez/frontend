@@ -13,7 +13,6 @@ export const MainPage = () => {
             placeholder="Sök efter din ingrediens här!"
           />
         </div>
-        <SearchFrame/>
         <div className="h-2/3 flex flex-col items-center justify-center">
           <List />
         </div>

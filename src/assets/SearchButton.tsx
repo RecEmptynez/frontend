@@ -1,6 +1,6 @@
-export default function Search() {
+export default function SearchButton() {
     return (
-      <div className="w-4 h-4 cursor-pointer">
+      <div className="w-4 h-4">
         <svg className="fill-beige-1200"
           width="100%"
           height="100%"
