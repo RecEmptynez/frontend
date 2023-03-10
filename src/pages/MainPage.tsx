@@ -1,5 +1,4 @@
 import { List } from "../components/List";
-import SearchFrame from "../components/SearchFrame";
 
 export const MainPage = () => {
   return (
