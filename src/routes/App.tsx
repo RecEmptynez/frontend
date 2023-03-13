@@ -1,15 +1,15 @@
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import {
 	createBrowserRouter,
 	createRoutesFromElements,
 	Outlet,
 	Route,
 	RouterProvider,
-} from "react-router-dom";
-import { ErrorPage } from "../pages/ErrorPage";
-import { MainPage } from "../pages/MainPage";
-import "./App.css";
+} from 'react-router-dom';
+import { ErrorPage } from '../pages/ErrorPage';
+import { MainPage } from '../pages/MainPage';
+import './App.css';
 import { RecipePage } from '../pages/RecipePage';
 
 function App() {
@@ -20,7 +20,7 @@ function App() {
 		createRoutesFromElements(
 			<Route
 				element={
-					<div className="font-poppins w-screen h-screen">
+					<div className="font-poppins w-screen h-screen bg-beige-200">
 						<Outlet />
 					</div>
 				}
