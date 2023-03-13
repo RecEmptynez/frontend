@@ -10,7 +10,6 @@ import {
 import { ErrorPage } from '../pages/ErrorPage';
 import { MainPage } from '../pages/MainPage';
 import './App.css';
-import { RecipePage } from '../pages/RecipePage';
 
 function App() {
 	// Create a client
@@ -20,13 +19,13 @@ function App() {
 		createRoutesFromElements(
 			<Route
 				element={
-					<div className="font-poppins w-screen h-screen bg-beige-200">
+					<div className="font-poppins w-screen h-screen">
 						<Outlet />
 					</div>
 				}
 				errorElement={<ErrorPage />}
 			>
-				<Route path="/" element={<RecipePage />} />
+				<Route path="/" element={<MainPage />} />
 			</Route>
 		)
 	);
