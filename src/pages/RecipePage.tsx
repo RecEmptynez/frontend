@@ -3,7 +3,7 @@ import { arrowBackOutline, chevronDown, filterCircle } from 'ionicons/icons';
 
 export const RecipePage = () => {
 	return (
-		<div className="mx-10">
+		<div className="mx-16">
 			{/* Back Button */}
 			<div className="inline-flex flex-row items-center my-10 text-beige-1400 font-semibold text-base hover:text-beige-1000 hover:duration-300 cursor-pointer">
 				<IonIcon icon={arrowBackOutline} size="large" />
