@@ -2,8 +2,11 @@ import { useRef, useState } from "react";
 import { ReactComponent as BackgroundGeometry1 } from "../assets/svgs/BackgroundGeometry1.svg";
 import { ReactComponent as BackgroundGeometry2 } from "../assets/svgs/BackgroundGeometry2.svg";
 import { ActionButton } from "../components/ActionButton";
+import { IngredientsList } from "../components/IngredientsList";
+import SearchBar from "../components/SearchBar";
 
 export const HomePage = () => {
+  const [ingredients, setIngredients] = useState<string[]>([]);
   const bottomDivRef = useRef<HTMLDivElement>(null);
 
   return (
@@ -22,6 +25,23 @@ export const HomePage = () => {
               bottomDivRef.current?.scrollIntoView({ behavior: "smooth" })
             }
           />
+        </div>
+        <div className="relative w-full h-screen flex flex-col justify-center text-beige-1200 z-10">
+          <div className="w-full h-full flex">
+            <div className="w-1/2 h-1/2 flex justify-center">
+              <div className="w-2/3 h-full flex flex-col items-center justify-center">
+                <h1 className="font-bold text-[28px]">Sök ingrediens</h1>
+                <SearchBar />
+              </div>
+            </div>
+            <div className="w-1/2 h-full flex flex-col items-center justify-center">
+              <h1 className="font-bold text-[28px]">Valda ingredienser</h1>
+              <IngredientsList
+                ingredients={ingredients}
+                setIngredients={setIngredients}
+              />
+            </div>
+          </div>
         </div>
         <BackgroundGeometry2 className="absolute right-0 bottom-0 z-0" />
         <BackgroundGeometry1 className="absolute right-0 bottom-0 z-0" />
