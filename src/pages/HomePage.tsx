@@ -27,20 +27,29 @@ export const HomePage = () => {
           />
         </div>
         <div className="relative w-full h-screen flex flex-col justify-center text-beige-1200 z-10">
-          <div className="w-full h-full flex">
+          <div className="w-full h-full flex pt-32">
             <div className="w-1/2 h-1/2 flex justify-center">
-              <div className="w-2/3 h-full flex flex-col items-center justify-center">
-                <h1 className="font-bold text-[28px]">Sök ingrediens</h1>
+              <div className="w-2/3 h-full flex flex-col items-center">
+                <h1 className="font-bold text-[28px] mb-7">Sök ingrediens</h1>
                 <SearchBar />
               </div>
             </div>
-            <div className="w-1/2 h-full flex flex-col items-center justify-center">
-              <h1 className="font-bold text-[28px]">Valda ingredienser</h1>
+            <div className="w-1/2 h-full flex flex-col items-center">
+              <h1 className="font-bold text-[28px] mb-7">Valda ingredienser</h1>
               <IngredientsList
                 ingredients={ingredients}
                 setIngredients={setIngredients}
               />
             </div>
+          </div>
+          <div
+            ref={bottomDivRef}
+            className="absolute flex justify-center bottom-12 left-1/2 -translate-x-1/2"
+          >
+            <ActionButton
+              label={"Hitta recept"}
+              onClickAction={() => console.log("Show recipes")}
+            />
           </div>
         </div>
         <BackgroundGeometry2 className="absolute right-0 bottom-0 z-0" />
