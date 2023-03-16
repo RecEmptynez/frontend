@@ -9,6 +9,7 @@ import {
 } from 'react-router-dom';
 import { ErrorPage } from '../pages/ErrorPage';
 import { MainPage } from '../pages/MainPage';
+import { RecipePage } from '../pages/RecipePage';
 import './App.css';
 
 function App() {
@@ -19,7 +20,7 @@ function App() {
 		createRoutesFromElements(
 			<Route
 				element={
-					<div className="font-poppins w-screen h-screen">
+					<div className="font-poppins w-screen h-screen bg-beige-400">
 						<Outlet />
 					</div>
 				}
