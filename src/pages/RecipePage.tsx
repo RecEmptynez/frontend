@@ -1,9 +1,7 @@
 import { IonIcon } from '@ionic/react';
-import {
-	arrowBackOutline,
-	chevronDown,
-} from 'ionicons/icons';
+import { arrowBackOutline, chevronDown } from 'ionicons/icons';
 import { Filtering } from '../components/recipe_components/Filtering';
+import { Sorting } from '../components/recipe_components/Sorting';
 
 export const RecipePage = () => {
 	return (
@@ -22,10 +20,7 @@ export const RecipePage = () => {
 				</div>
 
 				<div className="flex flex-row items-center space-x-24">
-					<div className="flex flex-row space-x-2 items-center space-x text-beige-1200 hover:text-beige-1000 hover:duration-300 cursor-pointer text-sm">
-						<p>Sortera efter</p>
-						<IonIcon icon={chevronDown} />
-					</div>
+					<Sorting />
 					<Filtering
 						filters={['Vegetariskt', 'Veganskt', 'Glutenfritt', 'Laktosfritt']}
 					/>

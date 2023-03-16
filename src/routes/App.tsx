@@ -19,7 +19,7 @@ function App() {
 		createRoutesFromElements(
 			<Route
 				element={
-					<div className="font-poppins w-screen h-screen">
+					<div className="font-poppins w-screen h-screen bg-beige-400">
 						<Outlet />
 					</div>
 				}
