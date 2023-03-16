@@ -25,7 +25,7 @@ function App() {
 				}
 				errorElement={<ErrorPage />}
 			>
-				<Route path="/" element={<RecipePage />} />
+				<Route path="/" element={<MainPage />} />
 			</Route>
 		)
 	);
