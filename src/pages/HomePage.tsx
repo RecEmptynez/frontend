@@ -39,7 +39,7 @@ export const HomePage = () => {
   return (
     <div className="h-screen overflow-x-hidden">
       <div className="relative w-screen h-[200vh] bg-beige-200">
-        <div className="w-full h-screen flex flex-col items-center justify-center text-beige-1200">
+        <div className="relative w-full h-screen flex flex-col items-center justify-center text-beige-1200 z-10">
           <h1 className="font-bold text-[28px]">Vad ska jag laga för mat?</h1>
           <p className="w-1/3 text-center my-8">
             Har du svårt att veta vad du ska laga idag? Då har du kommit rätt.
