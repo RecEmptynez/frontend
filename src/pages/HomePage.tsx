@@ -3,11 +3,38 @@ import { ReactComponent as BackgroundGeometry1 } from "../assets/svgs/Background
 import { ReactComponent as BackgroundGeometry2 } from "../assets/svgs/BackgroundGeometry2.svg";
 import { ActionButton } from "../components/ActionButton";
 import { IngredientsList } from "../components/IngredientsList";
-import SearchBar from "../components/SearchBar";
+import { SearchBar } from "../components/SearchBar";
 
 export const HomePage = () => {
-  const [ingredients, setIngredients] = useState<string[]>([]);
+  const [availableIngredients, setAvailableIngredients] = useState<string[]>([
+    "Tomatsås",
+    "Tomatpuré",
+    "Krossade tomater",
+    "karins lasange",
+  ]);
+  const [chosenIngredients, setChosenIngredients] = useState<string[]>([]);
   const bottomDivRef = useRef<HTMLDivElement>(null);
+
+  const addIngredient = (ingredient: string) => {
+    const newAvailableList = availableIngredients.filter(
+      (availableIngredient) => availableIngredient !== ingredient
+    );
+    setAvailableIngredients(newAvailableList);
+
+    const newChosenList = chosenIngredients;
+    newChosenList.push(ingredient);
+    setChosenIngredients(newChosenList);
+  };
+  const removeIngredient = (ingredient: string) => {
+    const newChosenList = chosenIngredients.filter(
+      (chosenIngredient) => chosenIngredient !== ingredient
+    );
+    setChosenIngredients(newChosenList);
+
+    const newAvailableList = availableIngredients;
+    newAvailableList.push(ingredient);
+    setAvailableIngredients(newAvailableList);
+  };
 
   return (
     <div className="h-screen overflow-x-hidden">
@@ -31,14 +58,17 @@ export const HomePage = () => {
             <div className="w-1/2 h-1/2 flex justify-center">
               <div className="w-2/3 h-full flex flex-col items-center">
                 <h1 className="font-bold text-[28px] mb-7">Sök ingrediens</h1>
-                <SearchBar />
+                <SearchBar
+                  ingredients={availableIngredients}
+                  addIngredient={addIngredient}
+                />
               </div>
             </div>
             <div className="w-1/2 h-full flex flex-col items-center">
               <h1 className="font-bold text-[28px] mb-7">Valda ingredienser</h1>
               <IngredientsList
-                ingredients={ingredients}
-                setIngredients={setIngredients}
+                ingredients={chosenIngredients}
+                removeIngredient={removeIngredient}
               />
             </div>
           </div>

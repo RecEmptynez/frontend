@@ -9,7 +9,6 @@ import {
 } from "react-router-dom";
 import { ErrorPage } from "../pages/ErrorPage";
 import { HomePage } from "../pages/HomePage";
-import { MainPage } from "../pages/MainPage";
 import "./App.css";
 
 function App() {

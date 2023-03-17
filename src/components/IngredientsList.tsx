@@ -2,19 +2,19 @@ import { ReactComponent as RemoveIngredientIcon } from "../assets/svgs/RemoveIng
 
 interface IngredientsListProp {
   ingredients: string[];
-  setIngredients: (value: string[]) => void;
+  removeIngredient: (ingredient: string) => void;
 }
 
 export const IngredientsList = (props: IngredientsListProp) => {
-  const { ingredients, setIngredients } = props;
+  const { ingredients, removeIngredient } = props;
 
-  const removeIngredient = (ingredient: string) => {
-    setIngredients(
-      ingredients.filter(
-        (removedIngredient) => removedIngredient !== ingredient
-      )
-    );
-  };
+  // const removeIngredient = (ingredient: string) => {
+  //   setIngredients(
+  //     ingredients.filter(
+  //       (removedIngredient) => removedIngredient !== ingredient
+  //     )
+  //   );
+  // };
 
   return (
     <div className="flex flex-col overflow-y-auto rounded-[20px] border border-beige-1000 bg-beige-200 w-[385px] h-[386px]">
@@ -23,7 +23,7 @@ export const IngredientsList = (props: IngredientsListProp) => {
           <div className="px-[30px] py-[25px] flex justify-between text-beige-1200">
             {ingredient}
             <div
-              onClick={() => removeIngredient(ingredient)}
+              onClick={() => removeIngredient}
               className="group flex items-center hover:cursor-pointer"
             >
               <RemoveIngredientIcon className="group-hover:-translate-x- transition-all" />
