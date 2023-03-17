@@ -3,10 +3,6 @@ import SearchButton from "../assets/SearchButton";
 import { RemoveButton } from "../assets/RemoveButton";
 import { SearchIngredientList } from "./SearchIngredientList";
 
-const FindIngredientsFromString = () => {
-  // TODO: Return array with ingredients from given string
-};
-
 interface SearchBarProps {
   ingredients: string[];
   addIngredient: (Ingredient: string) => void;
