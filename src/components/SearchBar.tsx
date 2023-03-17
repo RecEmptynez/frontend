@@ -19,11 +19,11 @@ export const SearchBar = (props: SearchBarProps) => {
   return (
     <div
       className={
-        "rounded-[20px] bg-beige-200 text-beige-1200 [box-shadow:0px_0px_0px_1.5px_#F0EFDC_inset] font-normal pl-[15px] pr-[15px] w-[100%]"
+        "rounded-[20px] bg-beige-200 text-beige-1200 [box-shadow:0px_0px_0px_1.5px_#F0EFDC_inset] font-normal pl-[15px] pr-[15px] w-full"
       }
     >
       <div
-        className={`py-2 inline-flex justify-between items-center text-left w-[100%]`}
+        className={`py-2 inline-flex justify-between items-center text-left w-full`}
       >
         <input
           type="text"
@@ -38,14 +38,16 @@ export const SearchBar = (props: SearchBarProps) => {
           <RemoveButton onClick={() => setName("")} />
         )}
       </div>
-      {name !== "" && ingredients.length !== 0 ? (
-        <SearchIngredientList
-          ingredients={ingredients}
-          addIngredient={addIngredient}
-        />
-      ) : (
-        <p></p>
-      )}
+      <div className="flex max-h-[50vh]">
+        {name !== "" && ingredients.length !== 0 ? (
+          <SearchIngredientList
+            ingredients={ingredients}
+            addIngredient={addIngredient}
+          />
+        ) : (
+          <p></p>
+        )}
+      </div>
     </div>
   );
 };

@@ -11,6 +11,19 @@ export const HomePage = () => {
     "Tomatpuré",
     "Krossade tomater",
     "karins lasange",
+    "Emils lasange",
+    "Erics lasange",
+    "Philips lasange",
+    "Lucas lasange",
+    "Pavlos lasange1",
+    "Pavlos lasange2",
+    "Pavlos lasange3",
+    "Pavlos lasange4",
+    "Pavlos lasange5",
+    "Pavlos lasange6",
+    "Pavlos lasange7",
+    "Pavlos lasange8",
+    "Pavlos lasange9",
   ]);
   const [chosenIngredients, setChosenIngredients] = useState<string[]>([]);
   const bottomDivRef = useRef<HTMLDivElement>(null);
