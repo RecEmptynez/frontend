@@ -1,11 +1,11 @@
 import { Ingredient } from "./Ingredient";
 
-interface IngredientListProps {
+interface SearchIngredientListProps {
   ingredients: string[];
   addIngredient: (Ingredient: string) => void;
 }
 
-export const IngredientList = (props: IngredientListProps) => {
+export const SearchIngredientList = (props: SearchIngredientListProps) => {
   const { ingredients, addIngredient } = props;
 
   return (

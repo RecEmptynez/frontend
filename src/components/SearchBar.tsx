@@ -1,11 +1,11 @@
 import { useState } from "react";
 import SearchButton from "../assets/SearchButton";
 import { RemoveButton } from "../assets/RemoveButton";
-import { IngredientList } from "./IngredientList";
+import { SearchIngredientList } from "./SearchIngredientList";
 
-function FindIngredientsFromString() {
-  return "TODO: Return array with ingredients from given string";
-}
+const FindIngredientsFromString = () => {
+  // TODO: Return array with ingredients from given string
+};
 
 interface SearchBarProps {
   ingredients: string[];
@@ -39,7 +39,7 @@ export const SearchBar = (props: SearchBarProps) => {
         )}
       </div>
       {name !== "" && ingredients.length !== 0 ? (
-        <IngredientList
+        <SearchIngredientList
           ingredients={ingredients}
           addIngredient={addIngredient}
         />
