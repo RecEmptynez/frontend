@@ -2,19 +2,11 @@ import { ReactComponent as RemoveIngredientIcon } from "../assets/svgs/RemoveIng
 
 interface IngredientsListProp {
   ingredients: string[];
-  setIngredients: (value: string[]) => void;
+  removeIngredient: (ingredient: string) => void;
 }
 
 export const IngredientsList = (props: IngredientsListProp) => {
-  const { ingredients, setIngredients } = props;
-
-  const removeIngredient = (ingredient: string) => {
-    setIngredients(
-      ingredients.filter(
-        (removedIngredient) => removedIngredient !== ingredient
-      )
-    );
-  };
+  const { ingredients, removeIngredient } = props;
 
   return (
     <div className="flex flex-col overflow-y-auto rounded-[20px] border border-beige-1000 bg-beige-200 w-[385px] h-[386px]">
