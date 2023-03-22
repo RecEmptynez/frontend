@@ -9,6 +9,7 @@ import {
 } from "react-router-dom";
 import { ErrorPage } from "../pages/ErrorPage";
 import { HomePage } from "../pages/HomePage";
+import { RecipePage } from "../pages/RecipePage";
 import "./App.css";
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
         errorElement={<ErrorPage />}
       >
         <Route path="/" element={<HomePage />} />
+        <Route path="/recipes" element={<RecipePage />} />
       </Route>
     )
   );

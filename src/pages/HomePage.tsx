@@ -4,27 +4,27 @@ import { ReactComponent as BackgroundGeometry2 } from "../assets/svgs/Background
 import { ActionButton } from "../components/ActionButton";
 import { IngredientsList } from "../components/IngredientsList";
 import { SearchBar } from "../components/SearchBar";
-import { SearchRecipes } from "../api/SearchRecipes";
+import { Link } from "react-router-dom";
 
 export const HomePage = () => {
   const [availableIngredients, setAvailableIngredients] = useState<string[]>([
-    "Tomatsås",
-    "Tomatpuré",
-    "Krossade tomater",
+    "tomatsås",
+    "tomatpuré",
+    "krossade tomater",
     "karins lasange",
-    "Emils lasange",
-    "Erics lasange",
-    "Philips lasange",
-    "Lucas lasange",
-    "Pavlos lasange1",
-    "Pavlos lasange2",
-    "Pavlos lasange3",
-    "Pavlos lasange4",
-    "Pavlos lasange5",
-    "Pavlos lasange6",
-    "Pavlos lasange7",
-    "Pavlos lasange8",
-    "Pavlos lasange9",
+    "emils lasange",
+    "erics lasange",
+    "philips lasange",
+    "lucas lasange",
+    "pavlos lasange1",
+    "pavlos lasange2",
+    "pavlos lasange3",
+    "pavlos lasange4",
+    "pavlos lasange5",
+    "pavlos lasange6",
+    "pavlos lasange7",
+    "pavlos lasange8",
+    "pavlos lasange9",
   ]);
   const [chosenIngredients, setChosenIngredients] = useState<string[]>([]);
   const bottomDivRef = useRef<HTMLDivElement>(null);
@@ -38,6 +38,7 @@ export const HomePage = () => {
     const newChosenList = chosenIngredients;
     newChosenList.push(ingredient);
     setChosenIngredients(newChosenList);
+    console.log(chosenIngredients)
   };
   const removeIngredient = (ingredient: string) => {
     const newChosenList = chosenIngredients.filter(
@@ -90,10 +91,21 @@ export const HomePage = () => {
             ref={bottomDivRef}
             className="absolute flex justify-center bottom-12 left-1/2 -translate-x-1/2"
           >
-            <ActionButton
-              label={"Hitta recept"}
-              onClickAction={() => SearchRecipes(chosenIngredients)}
-            />
+            <Link to="/recipes" state={chosenIngredients} className="font-semibold 
+         text-beige-400 
+         bg-primary-orange-600 
+         py-[15px] px-[50px]
+         border-2
+         border-beige-400
+         rounded-full
+         shadow-md
+         active:shadow-sm
+         hover:bg-primary-orange-400
+         hover:ease-out 
+         hover:duration-300
+         active:bg-primary-orange-200
+         active:ease-out 
+         active:duration-300">Hitta recept</Link>
           </div>
         </div>
         <BackgroundGeometry2 className="absolute right-0 bottom-0 z-0" />
