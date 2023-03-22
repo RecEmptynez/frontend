@@ -4,6 +4,7 @@ import { ReactComponent as BackgroundGeometry2 } from "../assets/svgs/Background
 import { ActionButton } from "../components/ActionButton";
 import { IngredientsList } from "../components/IngredientsList";
 import { SearchBar } from "../components/SearchBar";
+import { SearchRecipes } from "../api/SearchRecipes";
 
 export const HomePage = () => {
 	const [availableIngredients, setAvailableIngredients] = useState<string[]>([
@@ -97,7 +98,7 @@ export const HomePage = () => {
 					>
 						<ActionButton
 							label={"Hitta recept"}
-							onClickAction={() => console.log("Show recipes")}
+							onClickAction={() => SearchRecipes(chosenIngredients)}
 						/>
 					</div>
 				</div>
