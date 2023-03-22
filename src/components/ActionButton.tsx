@@ -15,6 +15,8 @@ export const ActionButton = (props: ActionButtonProps) => {
          border-2
          border-beige-400
          rounded-full
+         shadow-md
+         active:shadow-sm
          hover:bg-primary-orange-400
          hover:ease-out 
          hover:duration-300
