@@ -1,6 +1,5 @@
 import { useState } from "react";
 import SearchButton from "../assets/SearchButton";
-import { RemoveButton } from "../assets/RemoveButton";
 import { IonIcon } from "@ionic/react";
 import { close } from "ionicons/icons";
 import { SearchIngredientList } from "./SearchIngredientList";
