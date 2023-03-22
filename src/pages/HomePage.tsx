@@ -1,4 +1,5 @@
 import { useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { ReactComponent as BackgroundGeometry1 } from "../assets/svgs/BackgroundGeometry1.svg";
 import { ReactComponent as BackgroundGeometry2 } from "../assets/svgs/BackgroundGeometry2.svg";
 import { ActionButton } from "../components/ActionButton";
@@ -27,6 +28,7 @@ export const HomePage = () => {
   ]);
   const [chosenIngredients, setChosenIngredients] = useState<string[]>([]);
   const bottomDivRef = useRef<HTMLDivElement>(null);
+  const navigate = useNavigate();
 
   const addIngredient = (ingredient: string) => {
     const newAvailableList = availableIngredients.filter(
@@ -91,7 +93,7 @@ export const HomePage = () => {
           >
             <ActionButton
               label={"Hitta recept"}
-              onClickAction={() => console.log("Show recipes")}
+              onClickAction={() => navigate("/recipes")}
             />
           </div>
         </div>
