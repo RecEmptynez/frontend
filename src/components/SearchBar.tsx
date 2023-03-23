@@ -27,6 +27,7 @@ export const SearchBar = ({ availableIngredients, addIngredient }: SearchBarProp
 					type="text"
 					value={name}
 					onChange={(e) => handleSearchChange(e.target.value)}
+					onClick={(e) => (e.target as HTMLInputElement).select()}
 					className="placeholder-beige-1000 px-1 focus:outline-none bg-beige-200 w-full"
 					placeholder="Sök ingrediens"
 				/>
@@ -56,7 +57,7 @@ export const SearchBar = ({ availableIngredients, addIngredient }: SearchBarProp
 
 function getSuggestions(inputText: string, suggestions: string[]) {
 	return suggestions
-		.filter((suggestion) => suggestion.toLowerCase().startsWith(inputText.toLowerCase()))
+		.filter((suggestion) => suggestion.toLowerCase().includes(inputText.toLowerCase()))
 		.sort(
 			(a, b) =>
 				a.toLowerCase().indexOf(inputText.toLowerCase()) -
