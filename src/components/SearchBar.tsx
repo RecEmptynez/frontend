@@ -44,7 +44,10 @@ export const SearchBar = ({ availableIngredients, addIngredient }: SearchBarProp
 			{name !== "" && filteredSuggestions.length !== 0 && (
 				<SearchIngredientList
 					filteredSuggestions={filteredSuggestions}
-					addIngredient={addIngredient}
+					addIngredient={(ingredient) => {
+						setFilteredSuggestions(filteredSuggestions.filter((i) => i !== ingredient));
+						addIngredient(ingredient);
+					}}
 				/>
 			)}
 		</div>
