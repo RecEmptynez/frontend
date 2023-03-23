@@ -56,11 +56,7 @@ export const SearchBar = ({ availableIngredients, addIngredient }: SearchBarProp
 };
 
 function getSuggestions(inputText: string, suggestions: string[]) {
-	return suggestions
-		.filter((suggestion) => suggestion.toLowerCase().includes(inputText.toLowerCase()))
-		.sort(
-			(a, b) =>
-				a.toLowerCase().indexOf(inputText.toLowerCase()) -
-				b.toLowerCase().indexOf(inputText.toLowerCase())
-		);
+	return suggestions.filter(
+		(suggestion) => suggestion.toLowerCase().indexOf(inputText.toLowerCase()) !== -1
+	);
 }
