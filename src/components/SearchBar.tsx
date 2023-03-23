@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import SearchButton from "../assets/SearchButton";
 import { IonIcon } from "@ionic/react";
 import { close } from "ionicons/icons";
 import { SearchIngredientList } from "./SearchIngredientList";
+import memoize from "lodash.memoize";
 
 interface SearchBarProps {
 	availableIngredients: string[];
@@ -12,6 +13,7 @@ interface SearchBarProps {
 export const SearchBar = ({ availableIngredients, addIngredient }: SearchBarProps) => {
 	const [name, setName] = useState("");
 	const [filteredSuggestions, setFilteredSuggestions] = useState<string[]>([]);
+	const inputRef = useRef<HTMLInputElement>(null);
 
 	const handleSearchChange = (query: string) => {
 		setName(query);
@@ -24,6 +26,7 @@ export const SearchBar = ({ availableIngredients, addIngredient }: SearchBarProp
 		>
 			<div className={`py-3 flex flex-row justify-between items-center`}>
 				<input
+					ref={inputRef}
 					type="text"
 					value={name}
 					onChange={(e) => handleSearchChange(e.target.value)}
@@ -38,7 +41,10 @@ export const SearchBar = ({ availableIngredients, addIngredient }: SearchBarProp
 						icon={close}
 						className="cursor-pointer hover:text-beige-1000 hover:duration-300 hover:ease-out"
 						size="small"
-						onClick={() => handleSearchChange("")}
+						onClick={() => {
+							handleSearchChange("");
+							inputRef.current?.focus();
+						}}
 					/>
 				)}
 			</div>
@@ -55,8 +61,11 @@ export const SearchBar = ({ availableIngredients, addIngredient }: SearchBarProp
 	);
 };
 
-function getSuggestions(inputText: string, suggestions: string[]) {
-	return suggestions.filter(
-		(suggestion) => suggestion.toLowerCase().indexOf(inputText.toLowerCase()) !== -1
-	);
-}
+const getSuggestions = memoize((inputText: string, suggestions: string[]) =>
+	suggestions.filter((suggestion) =>
+		suggestion
+			.replace(/[^a-zA-Z]/g, "")
+			.toLowerCase()
+			.includes(inputText.replace(/[^a-zA-Z]/g, "").toLowerCase())
+	)
+);
