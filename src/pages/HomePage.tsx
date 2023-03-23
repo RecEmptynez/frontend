@@ -1,33 +1,28 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ReactComponent as BackgroundGeometry1 } from "../assets/svgs/BackgroundGeometry1.svg";
 import { ReactComponent as BackgroundGeometry2 } from "../assets/svgs/BackgroundGeometry2.svg";
 import { ActionButton } from "../components/ActionButton";
 import { IngredientsList } from "../components/IngredientsList";
 import { SearchBar } from "../components/SearchBar";
 import { SearchRecipes } from "../api/SearchRecipes";
+import { fetchAllIngredients } from "../api/SearchIngredients";
 
 export const HomePage = () => {
-	const [availableIngredients, setAvailableIngredients] = useState<string[]>([
-		"Tomatsås",
-		"Tomatpuré",
-		"Krossade tomater",
-		"karins lasange",
-		"Emils lasange",
-		"Erics lasange",
-		"Philips lasange",
-		"Lucas lasange",
-		"Pavlos lasange1",
-		"Pavlos lasange2",
-		"Pavlos lasange3",
-		"Pavlos lasange4",
-		"Pavlos lasange5",
-		"Pavlos lasange6",
-		"Pavlos lasange7",
-		"Pavlos lasange8",
-		"Pavlos lasange9",
-	]);
+	const [availableIngredients, setAvailableIngredients] = useState<string[]>(
+		[]
+	);
 	const [chosenIngredients, setChosenIngredients] = useState<string[]>([]);
 	const bottomDivRef = useRef<HTMLDivElement>(null);
+
+	useEffect(() => {
+		console.log("Mounting Home Page");
+		return () => {
+			console.log("Unmounting Home Page");
+			fetchAllIngredients().then((response) =>
+				setAvailableIngredients(response)
+			);
+		};
+	}, []);
 
 	const addIngredient = (ingredient: string) => {
 		const newAvailableList = availableIngredients.filter(
@@ -39,6 +34,7 @@ export const HomePage = () => {
 		newChosenList.push(ingredient);
 		setChosenIngredients(newChosenList);
 	};
+
 	const removeIngredient = (ingredient: string) => {
 		const newChosenList = chosenIngredients.filter(
 			(chosenIngredient) => chosenIngredient !== ingredient
@@ -77,7 +73,7 @@ export const HomePage = () => {
 									Sök ingrediens
 								</h1>
 								<SearchBar
-									ingredients={availableIngredients}
+									availableIngredients={availableIngredients}
 									addIngredient={addIngredient}
 								/>
 							</div>
