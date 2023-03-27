@@ -1,13 +1,14 @@
 import { IonIcon } from "@ionic/react";
 import { arrowBackOutline, chevronDown } from "ionicons/icons";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation} from "react-router-dom";
 import { RecipeCard } from "../components/RecipeCard";
 import { Filtering } from "../components/recipe_components/Filtering";
 import { Sorting } from "../components/recipe_components/Sorting";
 
 export const RecipePage = () => {
   const navigate = useNavigate();
-
+  const location = useLocation();
+  console.log(location.state.ingredients)
   const recipes = [
     <RecipeCard
       title={"Eric"}

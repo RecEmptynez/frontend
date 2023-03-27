@@ -93,7 +93,7 @@ export const HomePage = () => {
           >
             <ActionButton
               label={"Hitta recept"}
-              onClickAction={() => navigate("/recipes")}
+              onClickAction={() => navigate("/recipes", {state:{ingredients:chosenIngredients}})}
             />
           </div>
         </div>
