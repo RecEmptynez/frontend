@@ -1,5 +1,5 @@
 import { IonIcon } from "@ionic/react";
-import { arrowBackOutline, chevronDown } from "ionicons/icons";
+import { arrowBackOutline} from "ionicons/icons";
 import { useNavigate, useLocation} from "react-router-dom";
 import { RecipeCard } from "../components/RecipeCard";
 import { Filtering } from "../components/recipe_components/Filtering";
