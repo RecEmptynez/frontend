@@ -1,49 +1,71 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import SearchButton from "../assets/SearchButton";
-import { RemoveButton } from "../assets/RemoveButton";
+import { IonIcon } from "@ionic/react";
+import { close } from "ionicons/icons";
 import { SearchIngredientList } from "./SearchIngredientList";
+import memoize from "lodash.memoize";
 
 interface SearchBarProps {
-  ingredients: string[];
-  addIngredient: (Ingredient: string) => void;
+	availableIngredients: string[];
+	addIngredient: (Ingredient: string) => void;
 }
 
-export const SearchBar = (props: SearchBarProps) => {
-  const { ingredients, addIngredient } = props;
-  const [name, setName] = useState("");
+export const SearchBar = ({ availableIngredients, addIngredient }: SearchBarProps) => {
+	const [name, setName] = useState("");
+	const [filteredSuggestions, setFilteredSuggestions] = useState<string[]>([]);
+	const inputRef = useRef<HTMLInputElement>(null);
 
-  return (
-    <div
-      className={
-        "rounded-[20px] bg-beige-200 text-beige-1200 [box-shadow:0px_0px_0px_1.5px_#F0EFDC_inset] font-normal pl-[15px] pr-[15px] w-full"
-      }
-    >
-      <div
-        className={`py-2 inline-flex justify-between items-center text-left w-full`}
-      >
-        <input
-          type="text"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          className={`placeholder-beige-1000 focus:outline-none bg-beige-200 w-[90%] font-poppins`}
-          placeholder="Sök ingrediens"
-        />
-        {name === "" ? (
-          <SearchButton />
-        ) : (
-          <RemoveButton onClick={() => setName("")} />
-        )}
-      </div>
-      <div className="flex max-h-[50vh]">
-        {name !== "" && ingredients.length !== 0 ? (
-          <SearchIngredientList
-            ingredients={ingredients}
-            addIngredient={addIngredient}
-          />
-        ) : (
-          <p></p>
-        )}
-      </div>
-    </div>
-  );
+	const handleSearchChange = (query: string) => {
+		setName(query);
+		setFilteredSuggestions(getSuggestions(query, availableIngredients));
+	};
+
+	return (
+		<div
+			className={"rounded-[25px] bg-beige-200 text-beige-1200 border-beige-600 border-2 px-4 w-96"}
+		>
+			<div className={`py-3 flex flex-row justify-between items-center`}>
+				<input
+					ref={inputRef}
+					type="text"
+					value={name}
+					onChange={(e) => handleSearchChange(e.target.value)}
+					onClick={(e) => (e.target as HTMLInputElement).select()}
+					className="placeholder-beige-1000 px-1 focus:outline-none bg-beige-200 w-full"
+					placeholder="Sök ingrediens"
+				/>
+				{name === "" ? (
+					<SearchButton />
+				) : (
+					<IonIcon
+						icon={close}
+						className="cursor-pointer hover:text-beige-1000 hover:duration-300 hover:ease-out"
+						size="small"
+						onClick={() => {
+							handleSearchChange("");
+							inputRef.current?.focus();
+						}}
+					/>
+				)}
+			</div>
+			{name !== "" && filteredSuggestions.length !== 0 && (
+				<SearchIngredientList
+					filteredSuggestions={filteredSuggestions}
+					addIngredient={(ingredient) => {
+						setFilteredSuggestions(filteredSuggestions.filter((i) => i !== ingredient));
+						addIngredient(ingredient);
+					}}
+				/>
+			)}
+		</div>
+	);
 };
+
+const getSuggestions = memoize((inputText: string, suggestions: string[]) =>
+	suggestions.filter((suggestion) =>
+		suggestion
+			.replace(/[^a-zA-Z]/g, "")
+			.toLowerCase()
+			.includes(inputText.replace(/[^a-zA-Z]/g, "").toLowerCase())
+	)
+);

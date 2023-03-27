@@ -22,7 +22,8 @@ export const ActionButton = (props: ActionButtonProps) => {
          hover:duration-300
          active:bg-primary-orange-200
          active:ease-out 
-         active:duration-300`}
+         active:duration-300
+         select-none`}
 			onClick={onClickAction}
 		>
 			{label}
