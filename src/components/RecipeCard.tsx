@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Difficulty } from "./Difficulty";
 import { RecipeRating } from "./RecipeRating";
-import { ReactComponent as PercentageBox } from "../assets/svgs/PercentageBox.svg";
+import { Tooltip } from "./Tooltip";
 
 interface RecipeCardProp {
   title: string;
@@ -23,12 +23,16 @@ interface RecipeCardProp {
     IngredientsHave={5} IngredientsNeed={7}/>*/
 
 export const RecipeCard = (props: RecipeCardProp) => {
-  const [visible, setVisible] = useState("None");
+  const [barTooltipVisible, setBarTooltipVisible] = useState("None");
+  const [ratingTooltipVisible, setRatingTooltipVisible] = useState("None");
+  const [difficultyTooltipVisible, setDifficultyTooltipVisible] = useState("None");
 
   const ingredientsPercentage =
     (206 * props.IngredientsHave) / props.IngredientsNeed;
   const displayPercentage = ingredientsPercentage - 34;
 
+
+  
   return (
     <div
       className="w-[260px] h-[260px] m-4 relative
@@ -51,28 +55,31 @@ export const RecipeCard = (props: RecipeCardProp) => {
           {props.title}
         </h2>
 
-        <div className="z-[1] w-full h-[16px] mt-[85%] absolute flex justify-center">
+        <div className="z-[1] w-full h-[16px] mt-[85%] ml-[8%] absolute flex">
           <div
             className="w-[206px] h-full border-[3px] border-beige-400 rounded-[15px] px-[3px] flex items-center"
-            onMouseOver={() => setVisible("Block")}
-            onMouseLeave={() => setVisible("None")}
+            onMouseOver={() => setBarTooltipVisible("Block")}
+            onMouseLeave={() => setBarTooltipVisible("None")}
           >
             <div
               className="border-[3px] border-primary-orange-600 rounded-[10px]"
-              style={{ width: ingredientsPercentage + "px" }}
+              style={{ width: ingredientsPercentage}}
             />
-            <div
-              className="w-[1px] h-[1px] absolute"
-              style={{ marginLeft: displayPercentage + "px", display: visible }}
-            >
-              <PercentageBox className="absolute z-[20] h-[45px]" />
-              <p className="text-white absolute z-[30] ml-5 mt-4 text-[14px]">
-                {props.IngredientsHave}/{props.IngredientsNeed}
-              </p>
-            </div>
           </div>
+            <Tooltip
+              placement={"center"} width={100} height={40}
+              parentWidth={206} parentHeight={16} visible={barTooltipVisible}
+              text={"Du har " + props.IngredientsHave + " ingredienser av " + props.IngredientsNeed}/>
         </div>
-        <RecipeRating rating={props.rating} />
+        <div className="w-[100px] h-[26px] absolute mt-[65%] ml-[50%] flex items-center justify-around"
+             onMouseOver={() => setRatingTooltipVisible("Block")}
+             onMouseLeave={() => setRatingTooltipVisible("None")}>
+          <RecipeRating rating={props.rating} />
+          <Tooltip
+              placement={"right"} width={100} height={25}
+              parentWidth={0} parentHeight={42} visible={ratingTooltipVisible}
+              text={"Exakt betyg: " + props.rating}/>
+        </div>
         <Difficulty difficulty={props.difficulty} />
       </div>
     </div>

@@ -19,9 +19,9 @@ export const RecipePage = () => {
         "https://www.linkedin.com/in/eric-erlandsson-hollgren-486901244/"
       }
       difficulty={3}
-      rating={5}
-      IngredientsHave={0}
-      IngredientsNeed={1}
+      rating={3.7}
+      IngredientsHave={4}
+      IngredientsNeed={7}
     />,
     <RecipeCard
       title={"Eric"}
@@ -31,10 +31,10 @@ export const RecipePage = () => {
       recipeURL={
         "https://www.linkedin.com/in/eric-erlandsson-hollgren-486901244/"
       }
-      difficulty={3}
-      rating={5}
-      IngredientsHave={0}
-      IngredientsNeed={1}
+      difficulty={2}
+      rating={1.1}
+      IngredientsHave={3}
+      IngredientsNeed={12}
     />,
     <RecipeCard
       title={"Eric"}
@@ -44,10 +44,10 @@ export const RecipePage = () => {
       recipeURL={
         "https://www.linkedin.com/in/eric-erlandsson-hollgren-486901244/"
       }
-      difficulty={3}
-      rating={5}
-      IngredientsHave={0}
-      IngredientsNeed={1}
+      difficulty={1}
+      rating={2.2}
+      IngredientsHave={9}
+      IngredientsNeed={10}
     />,
     <RecipeCard
       title={"Eric"}
@@ -143,7 +143,7 @@ export const RecipePage = () => {
   ];
 
   return (
-    <div className="mx-16">
+    <div className="mx-16 h-full">
       <div
         onClick={() => navigate("/")}
         className="inline-flex flex-row items-center my-10 text-beige-1400 font-semibold text-base hover:text-beige-1000 hover:duration-300 cursor-pointer"
