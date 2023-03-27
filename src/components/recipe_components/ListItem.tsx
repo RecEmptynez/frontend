@@ -17,6 +17,7 @@ export const ListItem = ({
 
 	useEffect(() => {
 		onCheckboxChange(name, isChecked);
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [isChecked]);
 
 	return (
