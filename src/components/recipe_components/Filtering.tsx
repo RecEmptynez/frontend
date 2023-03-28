@@ -49,7 +49,7 @@ export const Filtering = ({ filters }: FilteringProps) => {
 			{isOpen && (
 				<ul
 					ref={listRef}
-					className="p-3 space-y-1 bg-beige-200 rounded-xl absolute shadow-md right-0 top-12"
+					className="z-[1] p-3 space-y-1 bg-beige-200 rounded-xl absolute shadow-md right-0 top-12"
 				>
 					{filters.map((filter) => (
 						<ListItem
