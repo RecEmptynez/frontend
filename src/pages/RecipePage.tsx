@@ -1,6 +1,6 @@
 import { IonIcon } from "@ionic/react";
 import { arrowBackOutline} from "ionicons/icons";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useLocation} from "react-router-dom";
 import { SearchRecipes } from "../api/SearchRecipes";
 import { RecipeCard } from "../components/RecipeCard";
@@ -11,16 +11,19 @@ import { Sorting } from "../components/recipe_components/Sorting";
 export const RecipePage = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  let recipes: [any, any][];
-	let recipeCardsMap: any;
   const [matches, setMatches] = useState(0)
 	const [recipeCards, setRecipeCards] = useState(<></>)
-  SearchRecipes(location.state.ingredients).then((response) => recipes = Object.entries(response["recipe_names"]))
-    .then(() => recipeCardsMap = recipes.map(([key, value]) => <RecipeCard title={key}
-    imageURL={value['picture_url']}
-	  recipeURL={value['url']} difficulty={value['difficulty']} rating={value['rating']}
-	  IngredientsHave={value['owned']} IngredientsNeed={value['total']}/>
-    )).then(() => setRecipeCards(recipeCardsMap)).then(() => setMatches(recipeCardsMap.length));
+  
+  useEffect(() => {
+    let recipes: [any, any][];
+    let recipeCardsMap: any;
+    SearchRecipes(location.state.ingredients).then((response) => recipes = Object.entries(response["recipe_names"]))
+      .then(() => recipeCardsMap = recipes.map(([key, value]) => <RecipeCard title={key}
+      imageURL={value['picture_url']}
+      recipeURL={value['url']} difficulty={value['difficulty']} rating={value['rating']}
+      IngredientsHave={value['owned']} IngredientsNeed={value['total']}/>
+      )).then(() => setRecipeCards(recipeCardsMap)).then(() => setMatches(recipeCardsMap.length));
+  }, [location])
 
   return (
     <div className="mx-16 h-full">
