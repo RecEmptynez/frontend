@@ -23,7 +23,7 @@ export const Tooltip = (props: TooltipProp) => {
     }
 
     return(
-        <div className="z-[1] bg-beige-1200 absolute rounded-[10px]" style={{width: props.width, height: props.height,
+        <div className="z-[1] bg-primary-green-400 absolute rounded-[10px]" style={{width: props.width, height: props.height,
             marginTop: props.parentHeight + 1, marginLeft: marginLeft, display: props.visible}}>
             <p className="text-[10px] text-white text-center mt-[5px]">{props.text}</p>
         </div>

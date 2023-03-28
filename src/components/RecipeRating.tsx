@@ -6,12 +6,9 @@ interface RecipeRatingProp{
     rating : number;
 }
 
-
 // Takes a number between 0-5 and returns a correct amount of filled stars.
-
 // Example of usage: <RecipeRating rating={3.6}/> will return five stars where three are fully filled, one is half-filled and the last one empty
   export const RecipeRating = (props: RecipeRatingProp) => {
-    const ratingClass = "w-[100px] h-[26px] absolute mt-[65%] ml-[50%] flex items-center justify-around"
     const emptyStars = <><EmptyStarIcon /><EmptyStarIcon /><EmptyStarIcon /><EmptyStarIcon /><EmptyStarIcon /></>;
     const fullStars = <><StarIcon/><StarIcon/><StarIcon/><StarIcon/><StarIcon/></>
 
