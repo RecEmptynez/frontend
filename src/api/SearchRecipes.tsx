@@ -1,8 +1,10 @@
 import { axiosClient } from "../apiClient";
 
 export function SearchRecipes(ingredients : string[]){
-    const test = JSON.stringify({"ingredient_names": ingredients})
-    axiosClient.post("/search/recipes", test).then(function (response){
-        console.log(response.data)
-    })
-}
+    const result = axiosClient.post("/search/recipes", 
+        {
+            "max_num": 10,
+            "ingredient_names": ingredients
+        }).then((response) => response.data)
+    return result
+};
