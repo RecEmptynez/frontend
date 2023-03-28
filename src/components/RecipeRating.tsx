@@ -6,25 +6,18 @@ interface RecipeRatingProp{
     rating : number;
 }
 
-
 // Takes a number between 0-5 and returns a correct amount of filled stars.
-
 // Example of usage: <RecipeRating rating={3.6}/> will return five stars where three are fully filled, one is half-filled and the last one empty
   export const RecipeRating = (props: RecipeRatingProp) => {
+    const emptyStars = <><EmptyStarIcon /><EmptyStarIcon /><EmptyStarIcon /><EmptyStarIcon /><EmptyStarIcon /></>;
+    const fullStars = <><StarIcon/><StarIcon/><StarIcon/><StarIcon/><StarIcon/></>
 
-    const ratingClass = "w-[100px] h-[26px] absolute mt-[65%] ml-[50%] flex items-center justify-around"
-
+    let stars;
     if(props.rating <= 0){ // In case rating is <= 0
-        return(        
-        <div className={ratingClass}> 
-            <EmptyStarIcon/><EmptyStarIcon/><EmptyStarIcon/><EmptyStarIcon/><EmptyStarIcon/>
-        </div>)
+        stars = emptyStars;
     }
     else if(props.rating >= 5){ // In case rating is >= 5
-        return(        
-            <div className={ratingClass}> 
-                <StarIcon/><StarIcon/><StarIcon/><StarIcon/><StarIcon/>
-            </div>)
+        stars = fullStars;
     }
     else{
         const numStars = Math.floor(props.rating); // How many stars
@@ -36,7 +29,6 @@ interface RecipeRatingProp{
             numHalfStars = 0;
         }
         let numEmptyStars = 5 - numStars - numHalfStars; // How many empty-stars
-        
         // Map stars, halfstars and emptystars by the amounts calculated above
         const Stars = [...Array(numStars)].map(() => (
             <StarIcon/>
@@ -47,14 +39,8 @@ interface RecipeRatingProp{
         const EmptyStars = [...Array(numEmptyStars)].map(() => (
             <EmptyStarIcon/>
           ));
-    
         // Return result
-        return( 
-            <div className={ratingClass}> 
-                {Stars}
-                {HalfStars}
-                {EmptyStars}
-            </div>
-        )
+        stars = <>{Stars}{HalfStars}{EmptyStars}</>
     }
+    return(stars)
   }
