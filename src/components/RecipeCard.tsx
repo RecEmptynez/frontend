@@ -30,7 +30,6 @@ export const RecipeCard = (props: RecipeCardProp) => {
 
   const ingredientsPercentage =
     (206 * props.IngredientsHave) / props.IngredientsNeed;
-  const displayPercentage = ingredientsPercentage - 34;
   
   function toggleShowNumIngredients(){
     setBarTooltipVisible("Block")
