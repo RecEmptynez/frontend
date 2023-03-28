@@ -1,6 +1,6 @@
 import { IonIcon } from "@ionic/react";
 import { arrowBackOutline} from "ionicons/icons";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate, useLocation} from "react-router-dom";
 import { SearchRecipes } from "../api/SearchRecipes";
 import { RecipeCard } from "../components/RecipeCard";
@@ -15,14 +15,12 @@ export const RecipePage = () => {
 	let recipeCardsMap: any;
   const [matches, setMatches] = useState(0)
 	const [recipeCards, setRecipeCards] = useState(<></>)
-	useEffect(() => {
-    SearchRecipes(location.state.ingredients).then((response) => recipes = Object.entries(response["recipe_names"]))
+  SearchRecipes(location.state.ingredients).then((response) => recipes = Object.entries(response["recipe_names"]))
     .then(() => recipeCardsMap = recipes.map(([key, value]) => <RecipeCard title={key}
     imageURL={value['picture_url']}
-		recipeURL={value['url']} difficulty={value['difficulty']} rating={value['rating']}
-		IngredientsHave={value['owned']} IngredientsNeed={value['total']}/>
+	  recipeURL={value['url']} difficulty={value['difficulty']} rating={value['rating']}
+	  IngredientsHave={value['owned']} IngredientsNeed={value['total']}/>
     )).then(() => setRecipeCards(recipeCardsMap)).then(() => setMatches(recipeCardsMap.length));
-  }, []);
 
   return (
     <div className="mx-16 h-full">
