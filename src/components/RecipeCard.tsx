@@ -7,7 +7,7 @@ interface RecipeCardProp {
   title: string;
   imageURL: string;
   recipeURL: string;
-  difficulty: string;
+  difficulty: number;
   rating: number;
   IngredientsHave: number;
   IngredientsNeed: number;

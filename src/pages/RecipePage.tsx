@@ -16,6 +16,7 @@ export const RecipePage = () => {
 		const fetchRecipes = async () => {
 			const response = await SearchRecipes(location.state.ingredients);
 			const recipes = Object.entries(response.recipe_names);
+			console.log(recipes[0][1]);
 			setRecipes(recipes);
 			renderCards(recipes);
 		};
