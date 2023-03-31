@@ -1,7 +1,7 @@
-import { useEffect, useRef, useState } from 'react';
-import { IonIcon } from '@ionic/react';
-import { filterCircle } from 'ionicons/icons';
-import { ListItem } from '../recipe_components/ListItem';
+import { useEffect, useRef, useState } from "react";
+import { IonIcon } from "@ionic/react";
+import { filterCircle } from "ionicons/icons";
+import { ListItem } from "../recipe_components/ListItem";
 
 interface FilteringProps {
 	filters: string[];
@@ -29,8 +29,8 @@ export const Filtering = ({ filters }: FilteringProps) => {
 				setIsOpen(false);
 			}
 		};
-		document.addEventListener('click', handleClickOutside);
-		return () => document.removeEventListener('click', handleClickOutside);
+		document.addEventListener("click", handleClickOutside);
+		return () => document.removeEventListener("click", handleClickOutside);
 	}, [listRef, buttonRef]);
 
 	const handleFilterChange = (filter: string, isActive: boolean) => {
@@ -51,13 +51,13 @@ export const Filtering = ({ filters }: FilteringProps) => {
 					ref={listRef}
 					className="z-[1] p-3 space-y-1 bg-beige-200 rounded-xl absolute shadow-md right-0 top-12"
 				>
-					{filters.map((filter) => (
-						<ListItem
-							onCheckboxChange={handleFilterChange}
-							name={filter}
-							preChecked={activeFilters.get(filter) || false}
-						/>
-					))}
+					{/* {filters.map((filter) => (
+						// <ListItem
+						// 	onChange={handleFilterChange}
+						// 	name={filter}
+						// 	checked={activeFilters.get(filter) || false}
+						// />
+					))} */}
 				</ul>
 			)}
 		</div>

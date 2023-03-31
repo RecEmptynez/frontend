@@ -1,22 +1,19 @@
-import { useEffect, useRef, useState } from 'react';
-import { IonIcon } from '@ionic/react';
-import { chevronDown } from 'ionicons/icons';
-import { ListItem } from './ListItem';
+import { useEffect, useRef, useState } from "react";
+import { IonIcon } from "@ionic/react";
+import { chevronDown } from "ionicons/icons";
+import { ListItem } from "./ListItem";
 
-const sortings = ['Relevans', 'Svårighetsgrad', 'Betyg'];
+type SortingProps = {
+	sortings: string[];
+	initialSorting: string;
+	onChange: (event: string) => void;
+};
 
-export const Sorting = () => {
-	// Relevans should be active by default
-	const [activeSortings, setActiveSortings] = useState<Map<string, boolean>>(
-		new Map(sortings.map((key, index) => [key, index === 0]))
-	);
+export const Sorting = ({ sortings, initialSorting, onChange }: SortingProps) => {
+	const [activeSorting, setActiveSorting] = useState(initialSorting);
 	const [isOpen, setIsOpen] = useState(false);
 	const listRef = useRef<HTMLUListElement>(null);
 	const dropDownRef = useRef<HTMLDivElement>(null);
-
-	useEffect(() => {
-		console.log(activeSortings.entries());
-	}, [activeSortings]);
 
 	useEffect(() => {
 		const handleClickOutside = (e: MouseEvent) => {
@@ -27,13 +24,9 @@ export const Sorting = () => {
 				setIsOpen(false);
 			}
 		};
-		document.addEventListener('click', handleClickOutside);
-		return () => document.removeEventListener('click', handleClickOutside);
+		document.addEventListener("click", handleClickOutside);
+		return () => document.removeEventListener("click", handleClickOutside);
 	}, [listRef, dropDownRef]);
-
-	function handleSortingChange(sorting: string, isActive: boolean): void {
-		setActiveSortings(new Map(activeSortings.set(sorting, isActive)));
-	}
 
 	return (
 		<div className="relative">
@@ -52,9 +45,12 @@ export const Sorting = () => {
 				>
 					{sortings.map((sorting) => (
 						<ListItem
-							onCheckboxChange={handleSortingChange}
 							name={sorting}
-							preChecked={activeSortings.get(sorting) || false}
+							isChecked={sorting === activeSorting}
+							onChange={() => {
+								setActiveSorting(sorting);
+								onChange(sorting);
+							}}
 						/>
 					))}
 				</ul>
@@ -62,3 +58,4 @@ export const Sorting = () => {
 		</div>
 	);
 };
+

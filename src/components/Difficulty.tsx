@@ -3,7 +3,7 @@ import { ReactComponent as DifficultyMediumIcon } from "../assets/svgs/Difficult
 import { ReactComponent as DifficultyHardIcon } from "../assets/svgs/DifficultyHardIcon.svg";
 
 interface DifficultyProp {
-    difficulty: String;
+    difficulty: number;
   }
 
 // Returns the correct icon depending on input: 1 = Easy, 2 = Medium & 3 = Hard
@@ -12,19 +12,19 @@ interface DifficultyProp {
   export const Difficulty = (props: DifficultyProp) => {
     let diff;
     switch(props.difficulty){
-        case "Enkel": // Easy
+        case 0: // Easy
             diff =  <>
                         <DifficultyEasyIcon className="m-auto"/>
                         <p>Lätt</p>
                     </>
             break;
-        case "Medel": // Medium
+        case 1: // Medium
             diff =  <>
                         <DifficultyMediumIcon className="m-auto"/>
                         <p>Medel</p>
                     </>
             break;
-        case "Avancerad": // Hard
+        case 2: // Hard
             diff =  <>
                         <DifficultyHardIcon className="m-auto"/>
                         <p>Svår</p>
