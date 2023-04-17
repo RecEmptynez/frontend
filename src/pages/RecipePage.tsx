@@ -1,27 +1,31 @@
 import { IonIcon } from "@ionic/react";
 import { arrowBackOutline } from "ionicons/icons";
 import { useEffect, useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { SearchRecipes } from "../api/SearchRecipes";
 import { RecipeCard } from "../components/RecipeCard";
 import { Sorting } from "../components/recipe_components/Sorting";
 
-export const RecipePage = () => {
+interface RecipePageProps {
+  ingredients: string[];
+}
+
+export const RecipePage = (props: RecipePageProps) => {
+  const { ingredients } = props;
+
   const navigate = useNavigate();
-  const location = useLocation();
   const [recipes, setRecipes] = useState<[string, any][]>([]);
   const [recipeCards, setRecipeCards] = useState<JSX.Element[]>([]);
 
   useEffect(() => {
     const fetchRecipes = async () => {
-      const response = await SearchRecipes(location.state.ingredients);
+      const response = await SearchRecipes(ingredients);
       const recipes = Object.entries(response.recipe_names);
-      console.log(recipes[0][1]);
       setRecipes(recipes);
       renderCards(recipes);
     };
     fetchRecipes();
-  }, [location.state.ingredients]);
+  }, [ingredients]);
 
   const sortRecipes = (sortBy: string) => {
     let sortedRecipes = [...recipes];

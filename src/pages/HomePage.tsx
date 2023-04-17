@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { ReactComponent as BackgroundGeometry1 } from "../assets/svgs/BackgroundGeometry1.svg";
 import { ReactComponent as BackgroundGeometry2 } from "../assets/svgs/BackgroundGeometry2.svg";
@@ -7,16 +7,27 @@ import { IngredientsList } from "../components/IngredientsList";
 import { SearchBar } from "../components/SearchBar";
 import { fetchAllIngredients } from "../api/SearchIngredients";
 
-export const HomePage = () => {
-  const [availableIngredients, setAvailableIngredients] = useState<string[]>(
-    []
-  );
-  const [chosenIngredients, setChosenIngredients] = useState<string[]>([]);
+interface HomePageProps {
+  availableIngredients: string[];
+  setAvailableIngredients: (ingredients: string[]) => void;
+  chosenIngredients: string[];
+  setChosenIngredients: (ingredients: string[]) => void;
+}
+
+export const HomePage = (props: HomePageProps) => {
+  const {
+    availableIngredients,
+    setAvailableIngredients,
+    chosenIngredients,
+    setChosenIngredients,
+  } = props;
+
   const bottomDivRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetchAllIngredients().then(setAvailableIngredients);
+    if (availableIngredients.length === 0)
+      fetchAllIngredients().then(setAvailableIngredients);
   }, []);
 
   const addIngredient = (ingredient: string) => {
@@ -79,11 +90,7 @@ export const HomePage = () => {
           >
             <ActionButton
               label={"Hitta recept"}
-              onClickAction={() =>
-                navigate("/recipes", {
-                  state: { ingredients: chosenIngredients },
-                })
-              }
+              onClickAction={() => navigate("/recipes")}
             />
           </div>
         </div>
