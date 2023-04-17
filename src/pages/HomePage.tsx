@@ -28,7 +28,7 @@ export const HomePage = (props: HomePageProps) => {
   useEffect(() => {
     if (availableIngredients.length === 0)
       fetchAllIngredients().then(setAvailableIngredients);
-  }, []);
+  }, [availableIngredients, setAvailableIngredients]);
 
   const addIngredient = (ingredient: string) => {
     setAvailableIngredients(
