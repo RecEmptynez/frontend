@@ -1,0 +1,13 @@
+{
+  "hosting": {
+    "public": "build",
+    "redirects": [
+      {
+        "source": "/recipes",
+        "destination": "/",
+        "type": 301
+      }
+    ],
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"]
+  }
+}

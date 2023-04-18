@@ -11,10 +11,15 @@ import { ErrorPage } from "../pages/ErrorPage";
 import { HomePage } from "../pages/HomePage";
 import { RecipePage } from "../pages/RecipePage";
 import "./App.css";
+import { useState } from "react";
 
 function App() {
   // Create a client
   const queryClient = new QueryClient();
+  const [availableIngredients, setAvailableIngredients] = useState<string[]>(
+    []
+  );
+  const [chosenIngredients, setChosenIngredients] = useState<string[]>([]);
 
   const router = createBrowserRouter(
     createRoutesFromElements(
@@ -26,8 +31,21 @@ function App() {
         }
         errorElement={<ErrorPage />}
       >
-        <Route path="/" element={<HomePage />} />
-        <Route path="/recipes" element={<RecipePage />} />
+        <Route
+          path="/"
+          element={
+            <HomePage
+              availableIngredients={availableIngredients}
+              setAvailableIngredients={setAvailableIngredients}
+              chosenIngredients={chosenIngredients}
+              setChosenIngredients={setChosenIngredients}
+            />
+          }
+        />
+        <Route
+          path="/recipes"
+          element={<RecipePage ingredients={chosenIngredients} />}
+        />
       </Route>
     )
   );
