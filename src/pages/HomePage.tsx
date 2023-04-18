@@ -30,6 +30,11 @@ export const HomePage = (props: HomePageProps) => {
       fetchAllIngredients().then(setAvailableIngredients);
   }, [availableIngredients, setAvailableIngredients]);
 
+  useEffect(() => {
+    if (chosenIngredients.length > 0)
+      bottomDivRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, []);
+
   const addIngredient = (ingredient: string) => {
     setAvailableIngredients(
       availableIngredients.filter((i) => i !== ingredient)
