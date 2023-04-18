@@ -66,7 +66,7 @@ export const RecipePage = (props: RecipePageProps) => {
       <div className="flex flex-row items-center w-full justify-between">
         <div className="flex flex-col sm:flex-row w-full items-center space-x-0 sm:space-x-24">
           <p className="font-bold text-3xl sm:mb-0 mb-8">Receptförslag</p>
-          <div className="flex-col w-full items-center">
+          <div className="flex-col flex sm:flex-row w-full items-center">
             <p className="text-center">
               Dina ingredienser gav <strong>{recipes.length}</strong>{" "}
               matchningar
