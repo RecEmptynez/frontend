@@ -33,7 +33,7 @@ export const HomePage = (props: HomePageProps) => {
   useEffect(() => {
     if (chosenIngredients.length > 0)
       bottomDivRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, []);
+  }, [chosenIngredients]);
 
   const addIngredient = (ingredient: string) => {
     setAvailableIngredients(
